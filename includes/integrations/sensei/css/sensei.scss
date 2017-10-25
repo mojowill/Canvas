@@ -1,0 +1,832 @@
+/**
+ * Sensei
+ *
+ * Styles which integrate this theme with Sensei.
+ * This stylesheet is only enqueued if Sensei is activated.
+ * http://www.woothemes.com/products/sensei/
+ */
+
+@import '../../../../css/modules/_mixins';
+@import '../../../../css/modules/_variables';
+
+// General Sensei elements
+.clearfix {
+			&:before, &:after {
+					content: "";
+					display: table;
+			}
+			&:after {
+					clear: both;
+			}
+}
+
+.sensei-pagination{
+	.page-numbers li{
+		display: inline-block;
+	}
+}
+
+.meter {
+	clear: both;
+	height: 1.618em;
+	background: $bg_light;
+	margin-bottom: 1.618em;
+	position: relative;
+
+	span {
+		display: inline-block;
+		background: $color_links;
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		color: #fff;
+		font-weight: 700;
+		min-width: 2.618em;
+		box-sizing: border-box;
+		padding-right: .618em;
+		text-align: right;
+	}
+}
+
+.status {
+	display: inline-block;
+	padding: .236em .857em;
+	background: $border_main;
+	font-weight: 700;
+
+	&.in-progress {
+		&:before {
+			@include iconbefore("\f10c");
+		}
+	}
+
+	&.completed {
+		background: $success;
+		color: #fff;
+
+		&:before {
+			@include iconbefore("\f05d");
+		}
+	}
+
+	&.register {
+		color: #fff;
+		background: $color_links;
+		margin-top: 1em;
+
+		a {
+			color: #fff;
+			margin-left: .53em;
+		}
+
+		&:before {
+			@include iconbefore("\f007");
+		}
+	}
+}
+
+a.view-results,
+a.view-results-link,
+a.sensei-certificate-link {
+	display: inline-block;
+	padding: .236em .857em;
+	background: $border_main;
+	float: right;
+	margin-left: .236em;
+
+	&:after {
+		@include iconafter("\f18e");
+		text-decoration: none;
+	}
+}
+
+.lesson-status {
+	&.in-progress {
+		&:before {
+			@include iconbefore("\f10c");
+		}
+	}
+
+	&.completed,
+	&.complete {
+		color: $success;
+
+		&:before {
+			@include iconbefore("\f05d");
+		}
+	}
+
+	&.register {
+		&:before {
+			@include iconbefore("\f007");
+		}
+	}
+}
+
+.lesson-course:before {
+	@include iconbefore("\f112");
+}
+
+.course-price {
+	font-weight: 700;
+
+	del {
+		@include opacity(.5);
+		font-weight: normal;
+		margin-right: .236em;
+	}
+
+	ins {
+		text-decoration: none;
+		background: none;
+	}
+}
+
+.answer_message {
+	@include message("\f129", $info);
+	margin: 1em 0 !important; // redeclaring .message() overrides this so we use !important
+
+	&.user_right,
+	&.user_wrong {
+		color: $color_body;
+	}
+
+	&.user_right {
+		@include message("\f05d", $success);
+	}
+
+	&.user_wrong {
+		@include message("\f05c", $error);
+	}
+
+	&.has_notes {
+		span {
+			border-bottom: 1px dotted;
+			cursor: help;
+		}
+
+		.notes {
+			position: absolute;
+			z-index: 999;
+			background: #fff;
+			border: 1px solid $border_main;
+			padding: 1em 1.618em 0;
+			font-weight: normal;
+		}
+	}
+}
+
+.user_right {
+	color: $success;
+}
+
+.user_wrong {
+	color: $error;
+}
+
+.course {
+	.woo-sc-box {
+		clear:both;
+	}
+}
+
+// Courses
+#main {
+	.course,
+	.course-container {
+		.entry-actions {
+			span {
+				margin: 0 1em 0 0;
+			}
+		}
+	}
+}
+
+.sensei-ordering {
+	margin: 0 0 1em 0;
+}
+
+.sensei-course-filters {
+	margin: 0 0 2em 0;
+	padding: 0;
+		li {
+			float: left;
+			list-style: none;
+				a {
+					display: block;
+					border: 2px solid #ddd;
+					margin-right: 5px;
+					padding: 0.5em 1em;
+					background: #eee;
+						&:hover {
+							background: #fff;
+							text-decoration: none;
+							border-color: #ccc;
+						}
+						&.active {
+							border-color: #ddd;
+							background: #fff;
+							cursor: default;
+						}
+				}
+		}
+}
+
+.course-container {
+	.course {
+		clear: both;
+		margin: 0 0 20px;
+
+		h2 {
+			margin: 0 0 0.3em;
+			a {
+				&:link,
+				&:visited {
+					color: #222;
+				}
+			}
+		}
+	}
+}
+
+.tax-course-category {
+	.course-container {
+		.type-course {
+			clear: both;
+			.entry {
+				clear: none;
+			}
+		}
+	}
+}
+
+.sensei-course-meta {
+	> span {
+		color: lighten( $color_body, 20% );
+		font-size: 12px;
+		margin-right: .5em;
+		padding-right: .5em;
+		border-right: 1px solid $border_main;
+
+		&:last-child {
+			border: 0;
+			margin-right: 0;
+			padding-right: 0;
+		}
+
+		&.lesson-course {
+			&:before {
+				@include iconbefore("\f148");
+				width: auto;
+				margin-right: .236em;
+			}
+		}
+	}
+
+	a {
+		&:link,
+		&:visited {
+			color: lighten( $color_body, 20% );
+			font-weight: bold;
+		}
+	}
+}
+
+// Single Course
+.single-course {
+	header {
+		h1 {
+			margin: 0 0 .5em;
+		}
+	}
+
+	.course-meta {
+		margin-bottom: 1.618em;
+		clear: both;
+
+		.status {
+			float: left;
+			margin-right: .236em;
+		}
+
+		.view-results {
+			float: right;
+		}
+	}
+	.course-video {
+		margin-bottom: 1.618em;
+	}
+}
+
+.course {
+	.total-grade {
+		border-top: 2px solid $border_main;
+		padding-top: 1em;
+		margin-top: 1em;
+	}
+
+	.lesson-grade {
+		float: right;
+	}
+}
+
+// Lessons
+.course-lessons,
+.module-lessons {
+	.course-completion-rate {
+		float: right;
+		color: lighten( $color_body, 20% );
+		font-style: italic;
+		margin: 0 0 .5em;
+	}
+
+	.lesson, .module {
+		clear: both;
+		margin: 0 0 20px;
+
+		header {
+			h2 {
+				margin: 0 0 0.3em;
+
+				a {
+					&:link,
+					&:visited {
+						color: #222;
+					}
+				}
+			}
+		}
+
+		.lesson-meta {
+			margin: 0 0 1.8em;
+			> span {
+				font-size: 12px;
+				color: lighten( $color_body, 20% );
+				margin-right: .5em;
+				padding-right: .5em;
+				border-right: 1px solid $border_main;
+
+				&:last-child {
+					border: 0;
+					margin-right: 0;
+					padding-right: 0;
+				}
+			}
+
+			a {
+				&:link,
+				&:visited {
+					color: lighten( $color_body, 20% );
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
+
+
+// Single Lesson
+.single-lesson {
+	header {
+		h1 {
+			margin: 0 0 .5em;
+		}
+	}
+
+	.video {
+		margin: 0 0 1.618em;
+	}
+}
+
+// Lesson Complete
+#lesson_complete {
+	p {
+		margin: 0 0 1.2em;
+	}
+
+	.reset {
+		background: #FF4800;
+	}
+}
+
+// Modules
+.module {
+	.module-lessons {
+		ul {
+			list-style: none;
+		}
+	}
+}
+
+// Single Quiz
+.single-quiz {
+	li {
+		> span {
+			font-weight: 700;
+		}
+
+	}
+
+	.multiple-choice {
+		ul {
+			margin-left: 0;
+
+			li {
+				list-style: none;
+			}
+		}
+	}
+}
+
+#sensei-quiz-list {
+	list-style: none;
+
+	> li {
+		margin-bottom: 2.618em;
+		padding: 1.618em;
+		border: 1px solid $border_main;
+
+		ul {
+			list-style: none;
+			margin: 0;
+		}
+
+		.user_right,
+		.right_answer,
+		.user_wrong {
+			font-weight: 700;
+		}
+	}
+}
+
+// Learner Profile
+.learner-info {
+	.avatar {
+		float: right;
+		margin: 0 0 1.618em 1em;
+	}
+
+	& + h2 {
+		clear: both;
+	}
+}
+
+// My Courses
+#my-courses {
+	.ui-tabs-nav {
+		padding-left: 0;
+
+		li {
+			list-style: none;
+			display: inline-block;
+			margin-right: 1em;
+
+			&.ui-state-active {
+				font-weight: bold;
+				a {
+					color: $color_links;
+				}
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			a {
+				color: lighten( $color_body, 20% );
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+// Widgets
+.widget_sensei_category_courses,
+.widget_sensei_course_component {
+	li {
+		clear: both;
+		margin-bottom: 1.618em;
+	}
+
+	img {
+		width: 4.236em;
+		height: auto;
+		float: right;
+	}
+}
+
+.widget_sensei_lesson_component {
+	li {
+		margin-bottom: 1.618em;
+	}
+}
+
+//Messages
+.course-container,
+.course,
+.lesson,
+.quiz,
+.learner-info {
+	p.sensei-message,
+	div.sensei-message {
+		clear: both;
+		@include message();
+
+		&.medium {
+			padding: 1.387em 1.387em 1.387em 3.631em;
+		}
+
+		&.large {
+			padding: 1.387em 1.387em 1.387em 3.631em;
+			font-size: 1.2em;
+		}
+
+		&.rounded {
+			border-radius: .202em;
+		}
+
+		a {
+			text-decoration: underline;
+			background: none;
+			padding: 0;
+
+			&:hover  {
+				text-decoration: none;
+			}
+		}
+
+		&.alert {
+			@include message("\f071", $error);
+
+			a {
+				color: darken($error, 10%);
+
+				&:hover  {
+					color: darken($error, 15%);
+				}
+			}
+		}
+
+		&.download,
+		&.tick {
+			@include message("\f019", $success);
+
+			a {
+				color: darken($success, 10%);
+
+				&:hover  {
+					color: darken($success, 15%);
+				}
+			}
+		}
+
+		&.tick {
+			&:before {
+				content: "\f00c";
+			}
+		}
+
+		&.info {
+			@include message("\f05a", #555);
+
+			a {
+				color: darken($color_body, 10%);
+
+				&:hover {
+					color: darken($color_body, 15%);
+				}
+			}
+		}
+
+		&.note {
+			@include message("\f0f6", $info);
+		}
+
+		&.normal {
+			background: $bg_light;
+			padding: 1em 1.387em;
+		}
+
+		.view-quiz {
+			float: right;
+		}
+		.next-lesson {
+			text-decoration: none;
+			float:right;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+// Post Navigation
+#post-entries {
+	a {
+		color: #888;
+		font-size: .9em;
+	}
+
+	.nav-prev {
+		a {
+			&:before {
+				@include iconbefore( "\f104" );
+				width: 1em;
+			}
+		}
+	}
+
+	.nav-next {
+		a {
+			&:after {
+				@include iconafter( "\f105" );
+				width: 1em;
+			}
+		}
+	}
+}
+
+/* RESPOND */
+@media only screen and (min-width: 768px)  {
+	/* Course Archives */
+	.sensei-ordering {
+		text-align: right;
+		float: right;
+		margin: 0;
+	}
+}
+
+/* MODULE STYLES */
+$fontawesome: FontAwesomeSensei, FontAwesome;
+.module-archive #main .status, #main .course .module-status {
+	padding:.382em 1em;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	-moz-background-clip:padding;
+	-webkit-background-clip:padding-box;
+	background-clip:padding-box;
+	color:#fff;
+	font-weight:bold;
+	background:#c6c6c6;
+	clear: both;
+	display: inline-block;
+}
+.module-archive #main .status:before, #main .course .module-status:before {
+	font-family: $fontawesome;
+	display:inline-block;
+	font-size:100%;
+	margin-right:.618em;
+	font-weight:normal;
+	line-height:1em;
+	width:1em;
+}
+.module-archive #main .status.completed, #main .course .module-status.completed {
+	background:#63a95f;
+}
+.module-archive #main .status.completed:before, #main .course .module-status.completed:before {
+	content:"\f00c";
+}
+.module-archive #main .status.in-progress:before, #main .course .module-status.in-progress:before {
+	content:"\f110";
+}
+.module-lessons .lesson-status  {
+	font-style: normal;
+}
+.module-lessons .lesson-status.complete  {
+	color: #63a95f;
+}
+.module-lessons .lesson-status.complete:before  {
+	font-family: $fontawesome;
+    display: inline-block;
+    font-size:100%;
+    margin-right:.618em;
+    font-weight: normal;
+    line-height: 1em;
+    width:1em;
+	content: '\f00c';
+}
+
+.single-course {
+	.course-lessons {
+		> header {
+			h2 {
+				margin-bottom: 1em;
+			}
+		}
+	}
+}
+
+.module {
+	position: relative;
+	margin: 0 0 1em 0 !important;
+	border: none !important;
+	header {
+		background: rgba(0,0,0,0.05);
+		margin-bottom: 0 !important;
+		h2 {
+			padding: 0.6em 0 0.6em 20px;
+			margin: 0 !important;
+		}
+	}
+	.module-description {
+		padding: 1em 20px;
+		background: rgba(0,0,0,0.015);
+		margin: 0;
+		font-style: italic;
+	}
+	.module-lessons {
+		header {
+			margin: 0 !important;
+			padding: 0.6em 0.6em 0.6em 20px !important;
+			border-top: 1px solid rgba(0,0,0,0.05) !important;
+			border-bottom: 1px solid rgba(0,0,0,0.05);
+			background: rgba(0,0,0,0.03);
+			h3 {
+				margin: 0;
+			}
+		}
+		ul {
+			margin: 0 !important;
+			padding: 0 !important;
+			margin-bottom: 2em !important;
+			list-style: none !important;
+			li {
+				list-style: none !important;
+				margin: 0 !important;
+				position: relative;
+				a {
+					display: block;
+					border-bottom: 1px solid rgba(0,0,0,0.05);
+					padding: 0.618em 0.618em 0.618em 3.618em;
+					background: rgba(0,0,0,0.01);
+					position: relative;
+					text-decoration: none;
+					&:before {
+						font-family: $fontawesome;
+						display: inline-block;
+						font-size: 150%;
+						margin-right: 0.618em;
+						font-weight: 400;
+						line-height: 1em;
+						width: 1em;
+						position: absolute;
+						left: 20px;
+						top: 0.5em;
+						content: '\f10c';
+						color: rgba(0,0,0,0.1);
+					}
+					&:hover {
+						background: rgba(255,255,255,1);
+						border-bottom: 1px solid rgba(0,0,0,0.05);
+						text-decoration: none;
+						&:before {
+							content: '\f138';
+							color: rgba(0,0,0,0.2);
+						}
+					}
+					.preview-label {
+						float: right;
+						color: rgba(255,255,255,1);
+						background: #63a95f;
+						padding:.2em 1em;
+						-webkit-border-radius:5px;
+						border-radius:5px;
+						-moz-background-clip:padding;
+						-webkit-background-clip:padding-box;
+						background-clip:padding-box;
+						clear: both;
+						display: inline-block;
+						position: relative;
+						top: -0.2em;
+						&:before {
+							font-family: $fontawesome;
+							display: inline-block;
+							margin-right: 0.168em;
+							line-height: 1em;
+							width: 1em;
+							content: '\f13e';
+						}
+					}
+				}
+				&.completed {
+					a {
+						color: rgba(0,0,0,0.4);
+						&:before {
+							content: '\f058';
+							color: #63a95f;
+						}
+					}
+				}
+			}
+		}
+	}
+	.module-status {
+		position: absolute;
+		right: 20px;
+		top: 1em;
+		margin: 0 !important;
+		font-size: inherit !important;
+	}
+}
